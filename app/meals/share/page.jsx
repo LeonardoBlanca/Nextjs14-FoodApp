@@ -1,6 +1,11 @@
+import ImagePicker from '@/assets/components/meals/image-picker';
 import classes from './page.module.css';
+import { shareMeal } from '@/lib/actions';
 
 export default function ShareMealPage() {
+
+
+
   return (
     <>
       
@@ -13,7 +18,7 @@ export default function ShareMealPage() {
 
       
       <main className={classes.main}>
-        <form className={classes.form}>
+        <form className={classes.form} action={shareMeal}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -41,7 +46,7 @@ export default function ShareMealPage() {
               required
             ></textarea>
           </p>
-          IMAGE PICKER
+            <ImagePicker label="Your image" name="image" />
           <p className={classes.actions}>
             <button type="submit">Share Meal</button>
           </p>
@@ -50,3 +55,7 @@ export default function ShareMealPage() {
     </>
   );
 }
+
+// Usar o 'use server' e o async garante que a função seja executada no lado do servidor apenas.
+// Coloque a função shareMeal dentro do input form usando 'action'.
+// O action funciona de forma "diferente" no React. Ele precisa do endereço /meals em vez do nome da função.
